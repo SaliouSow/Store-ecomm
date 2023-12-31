@@ -1,0 +1,19 @@
+<mat-sidenav-container [autosize]="true" class="min-h-full  mx-auto border-x">
+    <mat-sidenav mode="side" opened class="p-6">
+        <app-filters (showCategory)="onShowCategory($event)"></app-filters>
+    </mat-sidenav>
+    <mat-sidenav-content class="p-6">
+        <app-products-header (columnsCountChange)="onColumnsCountChange($event)"></app-products-header>
+        <!-- 
+        {{cols}}
+        {{category}} 
+        {{rowHeight}}
+        -->
+        <mat-grid-list gutterSize="10" [cols]="cols" [rowHeight]="rowHeight">
+            <mat-grid-tile>
+                <app-product-box class="w-full" [fullWidthMode]="cols === 1"></app-product-box>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-sidenav-content>
+    
+</mat-sidenav-container>
