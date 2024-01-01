@@ -9,7 +9,7 @@ import { CartService } from '../Services/cart.service';
 })
 export class HeaderComponent {
   private _cart: Cart = { items: [] };
-  itemQuantity = 0;
+  itemsQuantity = 0;
 
   @Input()
   get cart(): Cart{
@@ -18,14 +18,18 @@ export class HeaderComponent {
   set cart(cart: Cart){
     this._cart = cart;
 
-    this.itemQuantity = cart.items
+    this.itemsQuantity = cart.items
       .map(item => item.quantity)
       .reduce((prev, current) => prev + current, 0);
   }
 
   constructor(private cartService: CartService){}
 
-  getTotal(items: CartItem): number{
+  getTotal(items: Array<CartItem>): number{
     return this.cartService.getTotal(items);
+  }
+
+  onClearCart(): void {
+    this.cartService.clearCart();
   }
 }

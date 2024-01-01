@@ -8,10 +8,17 @@ import { Product } from 'src/app/models/Product.model';
 })
 export class ProductBoxComponent {
   @Input() fullWidthMode = false;
-  @Input() product : Product | undefined;
+  product : Product | undefined = {
+    id: 1,
+    title: 'sneakers',
+    price: 150,
+    category: 'shoes',
+    description: 'description',
+    image: 'https://via.placeholder.com/150'
+  }
   @Output() addToCart = new EventEmitter();
 
-  OnAddToCart(): void {
+  onAddToCart(): void {
     this.addToCart.emit(this.product)
   }
 }
